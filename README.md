@@ -16,6 +16,24 @@ You can interact with him in 7 ways: **Feed, Play, Pet, Sleep, Medicine, Scold, 
 
 Each mood also has its own timer. Leave Sam alone and his mood drifts on its own: ignore a happy Sam and he gets bored, stay bored too long and he gets angry, and leave him hungry and he gets sick until you give him medicine. Some moods settle down by themselves too, like a nap leaving him refreshed. Every mood has its own picture and message.
 
+## By the numbers
+
+Sam has **85 state transitions** in total, each one written out by hand in `pet.t`:
+
+| Function | States it handles | Transitions |
+|---|---|---|
+| Feed | all 12 | 12 |
+| Play | all 12 | 12 |
+| Pet | all 12 | 12 |
+| Sleep | all 12 | 12 |
+| Scold | all 12 | 12 |
+| Walk | all 12 | 12 |
+| Medicine | Sick only | 1 |
+| Timeout (ignored too long) | all 12 | 12 |
+| **Total** | | **85** |
+
+Timers range from **6 seconds** (Excited, Energetic) to **15 seconds** (Sick), and every action cancels the running timer and starts a fresh one for the new mood, so timeouts never stack up.
+
 ## Files
 
 | File | What it is |
