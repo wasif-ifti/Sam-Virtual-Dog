@@ -18,11 +18,11 @@ Each mood also has its own timer. Leave Sam alone and his mood drifts on its own
 
 | File | What it is |
 |---|---|
-| `pet.t` | The source code: states, transitions, and the timer logic |
+| `pet.t` | The source code, written in Tranquility: states, transitions, and the timer logic |
 | `index.html` | The compiled, playable version |
 | `documentation.html` | Full state and transition tables plus Sam's backstory |
 | `*.jpg` | One image per mood |
 
 ## Built with
 
-Written in the course's teaching language for CS 164 (Introduction to Computer Science) at Drexel University, compiled to run in the browser.
+Tranquility, Drexel's teaching language that compiles to interactive web pages. Written for CS 164 (Introduction to Computer Science) at Drexel University.
