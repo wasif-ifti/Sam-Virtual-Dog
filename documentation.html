@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buddy the Virtual Dog - Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background: #f5f0e8;
+            color: #333;
+        }
+        h1 { color: #8B4513; }
+        h2 { color: #A0522D; border-bottom: 2px solid #A0522D; padding-bottom: 5px; }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        th {
+            background: #A0522D;
+            color: white;
+            padding: 8px;
+            text-align: center;
+        }
+        td {
+            border: 1px solid #ccc;
+            padding: 6px 8px;
+            text-align: center;
+        }
+        tr:nth-child(even) { background: #fdf5e8; }
+        .state-key {
+            display: inline-block;
+            background: #A0522D;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin: 2px;
+        }
+        .timeout-box {
+            background: #fff8ee;
+            border-left: 4px solid #A0522D;
+            padding: 10px 16px;
+            margin: 10px 0;
+        }
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🐶 Sam the Virtual Dog</h1>
+<h2>Backstory</h2>
+<p>
+    Sam is a Border Collie puppy who you got since he was 3 months. He's smart, expressive, and a little dramatic
+    if you ignore him for too long, he'll let you know about it. Sam has a big personality packed into a small,
+    fluffy body. He loves walks, treats, cuddles, and playtime. He hates being scolded, going hungry,
+    and being left alone. Your job is to keep Sam happy, healthy, and entertained — forever.
+    There's no winning, there's no ending. Sam is just your dog now.
+</p>
+
+<h2>States</h2>
+<p>Sam has 12 possible moods at any time. Each is shown with a unique image and label on screen.</p>
+<table>
+    <tr><th>State #</th><th>Name</th><th>Description</th><th>Timeout (seconds)</th><th>Ignored Too Long...</th></tr>
+    <tr><td>0</td><td>Happy</td><td>Sam's baseline, content mood</td><td>10</td><td>→ Bored</td></tr>
+    <tr><td>1</td><td>Hungry</td><td>Sam needs food urgently</td><td>8</td><td>→ Sick</td></tr>
+    <tr><td>2</td><td>Sleepy</td><td>Sam is resting or napping</td><td>12</td><td>→ Happy (woke up rested)</td></tr>
+    <tr><td>3</td><td>Playful</td><td>Sam wants to run and play</td><td>8</td><td>→ Bored</td></tr>
+    <tr><td>4</td><td>Sad</td><td>Sam is down and needs comfort</td><td>10</td><td>→ Sick</td></tr>
+    <tr><td>5</td><td>Angry</td><td>Sam is frustrated and snappy</td><td>8</td><td>→ Sad</td></tr>
+    <tr><td>6</td><td>Sick</td><td>Sam is ill and needs medicine</td><td>15</td><td>→ Sick (stays sick)</td></tr>
+    <tr><td>7</td><td>Excited</td><td>Sam can barely contain himself</td><td>6</td><td>→ Happy</td></tr>
+    <tr><td>8</td><td>Bored</td><td>Sam has nothing to do</td><td>10</td><td>→ Angry</td></tr>
+    <tr><td>9</td><td>Loved</td><td>Sam feels cared for and safe</td><td>8</td><td>→ Happy</td></tr>
+    <tr><td>10</td><td>Scared</td><td>Sam is frightened</td><td>8</td><td>→ Sad</td></tr>
+    <tr><td>11</td><td>Energetic</td><td>Sam has boundless energy</td><td>6</td><td>→ Playful</td></tr>
+</table>
+
+<h2>Interactions</h2>
+<p>There is 7 buttons to interact with Sam. Each does something different depending on his current mood.</p>
+<table>
+    <tr>
+        <th>Button</th>
+        <th>Happy(0)</th><th>Hungry(1)</th><th>Sleepy(2)</th><th>Playful(3)</th>
+        <th>Sad(4)</th><th>Angry(5)</th><th>Sick(6)</th><th>Excited(7)</th>
+        <th>Bored(8)</th><th>Loved(9)</th><th>Scared(10)</th><th>Energetic(11)</th>
+    </tr>
+    <tr>
+        <td><b>Feed</b></td>
+        <td>→7 Excited</td><td>→0 Happy</td><td>→2 (no eat)</td><td>→11 Energetic</td>
+        <td>→0 Happy</td><td>→4 Sad</td><td>→6 (no eat)</td><td>→9 Loved</td>
+        <td>→3 Playful</td><td>→7 Excited</td><td>→0 Happy</td><td>→7 Excited</td>
+    </tr>
+    <tr>
+        <td><b>Play</b></td>
+        <td>→3 Playful</td><td>→1 (too hungry)</td><td>→4 Sad</td><td>→11 Energetic</td>
+        <td>→3 Playful</td><td>→5 (not mood)</td><td>→6 (too sick)</td><td>→11 Energetic</td>
+        <td>→0 Happy</td><td>→3 Playful</td><td>→4 Sad</td><td>→7 Excited</td>
+    </tr>
+    <tr>
+        <td><b>Pet</b></td>
+        <td>→9 Loved</td><td>→1 (still hungry)</td><td>→2 (sleeping)</td><td>→0 Happy</td>
+        <td>→0 Happy</td><td>→5 (too angry)</td><td>→9 Loved</td><td>→9 Loved</td>
+        <td>→0 Happy</td><td>→9 Loved</td><td>→0 Happy</td><td>→0 Happy</td>
+    </tr>
+    <tr>
+        <td><b>Sleep</b></td>
+        <td>→2 Sleepy</td><td>→1 (too hungry)</td><td>→0 Happy</td><td>→4 Sad</td>
+        <td>→2 Sleepy</td><td>→5 (too angry)</td><td>→2 Sleepy</td><td>→2 Sleepy</td>
+        <td>→2 Sleepy</td><td>→2 Sleepy</td><td>→2 Sleepy</td><td>→4 Sad</td>
+    </tr>
+    <tr>
+        <td><b>Medicine</b></td>
+        <td>→0 (no need)</td><td>→1 (no need)</td><td>→2 (no need)</td><td>→3 (no need)</td>
+        <td>→4 (no need)</td><td>→5 (no need)</td><td>→0 Happy!</td><td>→7 (no need)</td>
+        <td>→8 (no need)</td><td>→9 (no need)</td><td>→10 (no need)</td><td>→11 (no need)</td>
+    </tr>
+    <tr>
+        <td><b>Scold</b></td>
+        <td>→4 Sad</td><td>→5 Angry</td><td>→10 Scared</td><td>→4 Sad</td>
+        <td>→4 More sad</td><td>→10 Scared</td><td>→6 (still sick)</td><td>→4 Sad</td>
+        <td>→5 Angry</td><td>→4 Sad</td><td>→10 More scared</td><td>→5 Angry</td>
+    </tr>
+    <tr>
+        <td><b>Walk</b></td>
+        <td>→11 Energetic</td><td>→6 Sick</td><td>→4 Sad</td><td>→7 Excited</td>
+        <td>→0 Happy</td><td>→3 Playful</td><td>→6 (too sick)</td><td>→11 Energetic</td>
+        <td>→3 Playful</td><td>→7 Excited</td><td>→0 Happy</td><td>→7 Excited</td>
+    </tr>
+</table>
+
+
+<h2>Tips for Keeping Sam Happy</h2>
+<div class="timeout-box">
+    <b>Watch out for these danger chains:</b><br>
+    Hungry → (ignored) → Sick → very hard to fix without medicine<br>
+    Sad → (ignored) → Sick → same problem<br>
+    Bored → (ignored) → Angry → be careful, angry Buddy is hard to calm
+</div>
+
+
+</body>
+</html>
