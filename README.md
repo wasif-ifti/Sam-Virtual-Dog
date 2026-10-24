@@ -1,5 +1,7 @@
 # 🐶 Sam the Virtual Dog
 
+> 🎓 Project for **CS 164 (Introduction to Computer Science)** at **Drexel University**
+
 A virtual pet you can play with in your browser. Sam is a Border Collie puppy: smart, expressive, and a little dramatic if you ignore him for too long. There's no winning and no ending. Sam is just your dog now.
 
 **▶️ [Play with Sam](https://www.cs.drexel.edu/~wi27/pet.html)** · **[Documentation](documentation.html)**
